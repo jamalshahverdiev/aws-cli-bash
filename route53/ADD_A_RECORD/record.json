@@ -1,0 +1,14 @@
+{
+    "Comment": "Add a record ",
+    "Changes": [
+        {
+            "Action": "CREATE",
+            "ResourceRecordSet": {
+                "Name": "${RECORD_DOMAIN_NAME}",
+                "Type": "A",
+                "TTL": 300,
+                "ResourceRecords": [ ${IP_ADDRESS_LIST} ]
+            }
+        }
+    ]
+}
