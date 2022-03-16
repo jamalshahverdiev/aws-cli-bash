@@ -6,9 +6,9 @@ sg_name=$2
 env_name=$3
 
 if [[ ${env_name} == 'prod' ]]; then
-    ip_address_file='ip_prod.txt' && AWS_PROFILE='ihs_prod_admin'
+    ip_address_file='ip_prod.txt' && AWS_PROFILE='project_prod_admin'
 elif [[ ${env_name} == 'nonprod' ]]; then
-    ip_address_file='ip_nonprod.txt' && AWS_PROFILE='ihs_nonprod_admin'
+    ip_address_file='ip_nonprod.txt' && AWS_PROFILE='project_nonprod_admin'
 else    
     echo "Environment argument can be only 'prod' or 'nonprod'" && exit 77
 fi
