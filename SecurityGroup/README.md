@@ -1,3 +1,3 @@
-# Folder contains `S3` related code files
+# Folder contains `SecrutiyGroups` related code files
 
-- [S3 upload file or folder](https://github.com/jamalshahverdiev/aws-cli-bash/tree/main/s3/upload_file_or_folder)
+- [By prod/nonprod environment sync local IP database to remote Security Group](https://github.com/jamalshahverdiev/aws-cli-bash/tree/main/SecurityGroup/aws_sg_add_or_remove_ip)
