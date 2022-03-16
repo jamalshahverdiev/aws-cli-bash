@@ -1,7 +1,7 @@
 # Add `A` record to `Route53`
 
-#### The folowing script will add 2 A records to the existing domain which defined in the `libs/route53_variables.sh` file as vairable
+#### The folowing script gets 2 argumets from console file or folder name and bucket name to upload it to the remote. Script will chech local and remote for existing folder and file
 
 ```bash
-$ ./add_a_record_to_route53.sh
+$ ./main.sh file_or_folder_name bucket_name
 ```
