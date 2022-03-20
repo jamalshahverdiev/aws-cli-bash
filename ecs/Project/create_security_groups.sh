@@ -2,7 +2,7 @@
 . ./libs/variables.sh
 . ./libs/sg_functions.sh 
 security_group_lines='''
-project-rds-sg:Allow_PostgreSQL_connection_from_ECS_VPC
+project-rds-sg:Allow_RDS_connection_from_ECS_VPC
 project-rds-reserved-sg:Allow_access_to_RDS_reserved
 project-ecs-alb-access:Allow_access_to_loadbalancers_from_outside
 ssh-access:ssh-access
