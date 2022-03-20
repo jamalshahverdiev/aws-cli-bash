@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+. ./libs/variables.sh
 . ./libs/ecr_functions.sh
 
 all_repo_names='''
