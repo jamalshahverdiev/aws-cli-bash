@@ -2,21 +2,25 @@
 . ./libs/variables.sh
 . ./libs/ecs_functions.sh
 
-SVC_TD_NAME=$1
-export TD_ARN=$(aws ecs list-task-definitions \
-    --region ${region_name} | jq -r '.taskDefinitionArns[]' | grep ${SVC_TD_NAME} | tail -n1)
-export TG_ARN=$(aws elbv2 describe-target-groups \
-    --region $region_name | jq -r '.TargetGroups[].TargetGroupArn' | grep $SVC_TD_NAME)
-export ECS_SVC_NAME=${SVC_TD_NAME}
-export TG_CONTAINER=${SVC_TD_NAME}
-export SECURITY_GROUP_ID=$(aws ec2 describe-security-groups \
-    --region ${region_name} \
-    --filters Name=group-name,Values=*${ecs_sg_name}* \
-    --query "SecurityGroups[*].{ID:GroupId}" \
-    --output text)
+service_names='''
+sandbox-site
+prod-site
+sandbox-auth
+prod-auth
+prod-kernel
+sandbox-board
+prod-board
+sandbox-kernel
+'''
 
-create_ecs_svc ${region_name} ${cluster_name} ${ECS_SVC_NAME} ${ecs_svc_temp_file_output}
+for svc_in_ecs in service_names; do
+    create_ecs_svc ${region_name} ${cluster_name} ${svc_in_ecs} ${ecs_svc_temp_file_output}
+done
 
+# Get names of all services
+# aws ecs list-services \
+#   --cluster $cluster_name \
+#   --region ${region_name} | jq -r '.serviceArns[]' | awk -F'/' '{ print $(NF)}'
 
 # Create a ECS Service and specifying a Capacity Provider:
 # aws ecs create-service \
