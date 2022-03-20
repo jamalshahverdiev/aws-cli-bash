@@ -21,8 +21,8 @@ ecs_svc_temp_file='yaml_json/ecs_create_service.json'
 ecs_svc_temp_file_output='yaml_json/ecs_create_service_output.json'
 task_exec_assume_role_json_file='yaml_json/ecs_task_exec_role_trust_relationship.json'
 get_ssm_parameters_json_file='yaml_json/get_ssm_parameters.json'
+ecs_sg_name='payriff-svc-sg'
 ssm_parameters_policy_name='GetSSMParameters'
-
 ssm_parameters=$(aws ssm describe-parameters --region ${region_name} | jq -r '.Parameters[].Name')
 
 network_all_outputs=$(aws cloudformation describe-stacks \
