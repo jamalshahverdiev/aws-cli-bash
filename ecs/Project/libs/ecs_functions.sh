@@ -34,8 +34,20 @@ create_ecs_svc() {
     if [[ $# != 4 ]]; then echo "Usage: ./$(basename $0) region_name cluster_name ecs_svc_name ecs_svc_temp_file_output"; exit 23; fi
     region_name=$1
     cluster_name=$2
-    ecs_svc_name=$3
+    export ecs_svc_name=$3
     ecs_svc_temp_file_output=$4
+
+    export TD_ARN=$(aws ecs list-task-definitions \
+        --region ${region_name} | jq -r '.taskDefinitionArns[]' | grep ${ecs_svc_name} | tail -n1)
+    export TG_ARN=$(aws elbv2 describe-target-groups \
+        --region $region_name | jq -r '.TargetGroups[].TargetGroupArn' | grep $ecs_svc_name)
+    export TG_CONTAINER=${ecs_svc_name}
+    export SECURITY_GROUP_ID=$(aws ec2 describe-security-groups \
+        --region ${region_name} \
+        --filters Name=group-name,Values=*${ecs_sg_name}* \
+        --query "SecurityGroups[*].{ID:GroupId}" \
+        --output text)
+
     cat ${ecs_svc_temp_file} | envsubst > ${ecs_svc_temp_file_output}
     create_svc_result=$(aws ecs create-service \
         --region ${region_name} \
