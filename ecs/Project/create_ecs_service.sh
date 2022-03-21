@@ -3,17 +3,13 @@
 . ./libs/ecs_functions.sh
 
 service_names='''
-sandbox-site
-prod-site
-sandbox-auth
-prod-auth
-prod-kernel
-sandbox-board
-prod-board
-sandbox-kernel
+sandbox-website
+sandbox-pay
+sandbox-dashboard
+sandbox-core
 '''
 
-for svc_in_ecs in service_names; do
+for svc_in_ecs in ${service_names}; do
     create_ecs_svc ${region_name} ${cluster_name} ${svc_in_ecs} ${ecs_svc_temp_file_output}
 done
 
