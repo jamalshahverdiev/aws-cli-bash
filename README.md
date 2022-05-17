@@ -7,3 +7,5 @@
 - [AWS Route53](https://github.com/jamalshahverdiev/aws-cli-bash/tree/main/route53)
 
 - [AWS ECS](https://github.com/jamalshahverdiev/aws-cli-bash/tree/main/ecs)
+
+- [AWS Lambda](https://github.com/jamalshahverdiev/aws-cli-bash/tree/main/lambda) 
